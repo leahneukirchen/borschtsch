@@ -20,8 +20,8 @@ jobs:
         run: make check
       - name: bors
         run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/stable:refs/remotes/origin/stable
-          git checkout stable
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/${BORS_BRANCH}:refs/remotes/origin/${BORS_BRANCH}
+          git checkout ${BORS_BRANCH}
           # unrelated histories are due to swallow clones
           git merge --no-edit --no-ff --allow-unrelated-histories \
             -X theirs \
@@ -35,3 +35,4 @@ jobs:
           GIT_AUTHOR_EMAIL: ''
           GIT_COMMITTER_NAME: bors
           GIT_COMMITTER_EMAIL: ''
+          BORS_BRANCH: stable
