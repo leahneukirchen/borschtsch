@@ -11,9 +11,9 @@ jobs:
     container:
       image: alpine:latest
     steps:
-      - uses: actions/checkout@v2
       - name: prepare
         run: apk add build-base perl-utils git
+      - uses: actions/checkout@v2
       - name: make all
         run: make all
       - name: make check
