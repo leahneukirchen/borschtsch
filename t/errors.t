@@ -1,5 +1,6 @@
 #!/bin/sh
 export "PATH=.:$PATH"
+trap - PIPE
 
 printf '1..13\n'
 printf '# error handling\n'

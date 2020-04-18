@@ -8,11 +8,7 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container:
-      image: alpine:latest
     steps:
-      - name: prepare
-        run: apk add build-base perl-utils git
       - uses: actions/checkout@v2
       - name: make all
         run: make all
