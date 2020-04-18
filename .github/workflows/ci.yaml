@@ -15,7 +15,8 @@ jobs:
         run: apk add build-base perl-utils git
       - uses: actions/checkout@v2
       - run: |
-          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+
       - name: make all
         run: make all
       - name: make check
