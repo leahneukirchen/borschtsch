@@ -12,9 +12,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: make all
         run: make all
+      - name: hax
+        run: |
+          ( trap - PIPE; yes; ) | ./xe -a -s "sed q" -- 1 2 3
       - name: make check
         run: make check
       - name: bors
+        if: github.ref == 'refs/heads/xe'
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/${BORS_BRANCH}:refs/remotes/origin/${BORS_BRANCH}
           git checkout ${BORS_BRANCH}
