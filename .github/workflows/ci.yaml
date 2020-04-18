@@ -12,9 +12,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: make all
         run: make all
-      - name: hax
-        run: |
-          sh -c 'trap - PIPE; yes | ./xe -a -s "sed q" -- 1 2 3'
       - name: make check
         run: make check
       - name: bors
