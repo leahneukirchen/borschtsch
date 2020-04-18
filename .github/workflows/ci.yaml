@@ -20,6 +20,7 @@ jobs:
         run: make check
       - name: bors
         run: |
+          git fetch origin/stable
           git checkout stable
           git merge --no-edit --no-ff --signoff -m 'bors passed' ${GITHUB_SHA}
         env:
