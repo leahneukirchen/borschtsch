@@ -14,17 +14,17 @@ jobs:
       - name: prepare
         run: apk add build-base perl-utils git
       - uses: actions/checkout@v2
-      - run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-
       - name: make all
         run: make all
       - name: make check
         run: make check
       - name: bors
         run: |
+          set -x
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
           git branch -a -v
           git checkout stable
+          git rev-parse HEAD
           git merge --no-edit --no-ff --signoff -m 'bors passed' ${GITHUB_SHA}
           git push
         env:
