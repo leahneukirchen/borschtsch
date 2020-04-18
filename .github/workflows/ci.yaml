@@ -24,6 +24,7 @@ jobs:
           git checkout stable
           # unrelated histories are due to swallow clones
           git merge --no-edit --no-ff --allow-unrelated-histories \
+            -X theirs \
             --signoff \
             -m 'bors passed' \
             -m "Logs: https://github.com/${GITHUB_REPOSITORY}/runs/${GITHUB_RUN_ID}" \
