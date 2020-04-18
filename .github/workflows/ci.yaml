@@ -25,7 +25,8 @@ jobs:
           git branch -a -v
           git checkout stable
           git rev-parse HEAD
-          git merge --no-edit --no-ff --signoff -m 'bors passed' ${GITHUB_SHA}
+          # unrelated histories are due to swallow clones
+          git merge --no-edit --no-ff --allow-unrelated-histories --signoff -m 'bors passed' ${GITHUB_SHA}
           git push
         env:
           GIT_AUTHOR_NAME: bors
