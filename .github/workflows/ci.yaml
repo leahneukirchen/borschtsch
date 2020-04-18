@@ -22,6 +22,7 @@ jobs:
         run: make check
       - name: bors
         run: |
+          git branch -a -v
           git checkout stable
           git merge --no-edit --no-ff --signoff -m 'bors passed' ${GITHUB_SHA}
           git push
