@@ -20,4 +20,15 @@ jobs:
         run: make check
       - name: bors
         run: |
-          env
+          git checkout stable
+          git merge --no-edit --no-ff --signoff -m 'bors passed' ${GITHUB_SHA}
+        env:
+          GIT_AUTHOR_NAME: bors
+          GIT_AUTHOR_EMAIL: 'bors@example.com'
+          GIT_COMMITTER_NAME: borsc
+          GIT_COMMITTER_EMAIL: 'borsc@example.com'
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: stable
