@@ -10,7 +10,7 @@ jobs:
         run: make all
       - name: hax
         run: |
-          yes | xe -a -s "sed q" -- 1 2 3
+          yes | ./xe -a -s "sed q" -- 1 2 3
       - name: make check
         run: make check
 
