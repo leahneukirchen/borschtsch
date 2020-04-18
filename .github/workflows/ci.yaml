@@ -1,6 +1,10 @@
 on:
   push:
 
+defaults:
+  run:
+    shell: sh
+
 jobs:
   test:
     runs-on: ubuntu-latest
