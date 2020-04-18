@@ -27,7 +27,7 @@ jobs:
             -X theirs \
             --signoff \
             -m 'bors passed' \
-            -m "Logs: https://github.com/${GITHUB_REPOSITORY}/runs/${GITHUB_RUN_ID}" \
+            -m "Logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
             ${GITHUB_SHA}
           git push
         env:
