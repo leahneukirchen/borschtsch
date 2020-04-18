@@ -8,17 +8,14 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container:
-      image: alpine:latest
     steps:
-      - name: prepare
-        run: apk add build-base perl-utils git
       - uses: actions/checkout@v2
       - name: make all
         run: make all
       - name: make check
         run: make check
       - name: bors
+        if: github.ref == 'refs/heads/xe'
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/${BORS_BRANCH}:refs/remotes/origin/${BORS_BRANCH}
           git checkout ${BORS_BRANCH}

@@ -88,7 +88,7 @@ c
 EOF
 
 tap3 'should not close stdin when arguments were read from command line' <<'EOF'
-yes | xe -a -s "sed q" -- 1 2 3
+yes 2>/dev/null | xe -a -s "sed q" -- 1 2 3
 >>>
 y
 y
@@ -96,7 +96,7 @@ y
 EOF
 
 tap3 'should not close stdin when arguments were read from file' <<'EOF'
-yes | xe -f NEWS.md -s 'sed q' 2>&1 | sed 3q
+yes 2>/dev/null | xe -f NEWS.md -s 'sed q' 2>&1 | sed 3q
 >>>
 y
 y
