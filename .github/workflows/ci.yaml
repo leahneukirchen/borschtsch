@@ -26,14 +26,17 @@ jobs:
             -m 'bors passed' \
             -m "Logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
             ${GITHUB_SHA}
-          git tag -a \
+          git tag --annotate \
+            --signoff \
             -m 'bors passed' \
             -m "Logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
-            -f ${BORS_BRANCH}-latest ${GITHUB_SHA}
-          git push origin ${BORS_BRANCH} ${BORS_BRANCH}-latest
+            -f ${BORS_TAG} ${GITHUB_SHA}
+          git push origin ${BORS_BRANCH}
+          git push origin -f ${BORS_TAG}
         env:
           GIT_AUTHOR_NAME: bors
           GIT_AUTHOR_EMAIL: ''
           GIT_COMMITTER_NAME: bors
           GIT_COMMITTER_EMAIL: ''
           BORS_BRANCH: stable
+          BORS_TAG: stable-latest
