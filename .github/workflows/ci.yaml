@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: prepare
-        run: apk add build-base perl
+        run: apk add build-base perl-utils
       - name: make all
         run: make all
       - name: hax
