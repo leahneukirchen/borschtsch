@@ -1,6 +1,5 @@
 #!/bin/sh
 export "PATH=.:$PATH"
-trap - PIPE
 
 printf '1..13\n'
 printf '# error handling\n'
@@ -89,7 +88,7 @@ c
 EOF
 
 tap3 'should not close stdin when arguments were read from command line' <<'EOF'
-yes | xe -a -s "sed q" -- 1 2 3
+( trap - PIPE; yes; ) | xe -a -s "sed q" -- 1 2 3
 >>>
 y
 y
@@ -97,7 +96,7 @@ y
 EOF
 
 tap3 'should not close stdin when arguments were read from file' <<'EOF'
-yes | xe -f NEWS.md -s 'sed q' 2>&1 | sed 3q
+( trap - PIPE; yes; ) | xe -f NEWS.md -s 'sed q' 2>&1 | sed 3q
 >>>
 y
 y
